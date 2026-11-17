@@ -1,11 +1,11 @@
 <mxfile host="65bd71144e">
     <diagram id="glnzZNyg6yyLlJkRGcyl" name="Page-1">
-        <mxGraphModel dx="1056" dy="775" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="815" dy="545" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="TVIsHUXLkixqiQ88FRVk-16" parent="1" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="bucketlist" vertex="1">
-                    <mxGeometry height="240" width="580" x="110" y="130" as="geometry"/>
+                    <mxGeometry height="210" width="580" x="110" y="130" as="geometry"/>
                 </mxCell>
                 <mxCell id="TVIsHUXLkixqiQ88FRVk-17" parent="TVIsHUXLkixqiQ88FRVk-16" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" value="" vertex="1">
                     <mxGeometry height="30" width="580" y="30" as="geometry"/>
@@ -72,21 +72,8 @@
                         <mxRectangle height="30" width="550" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="TVIsHUXLkixqiQ88FRVk-38" parent="TVIsHUXLkixqiQ88FRVk-16" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" value="" vertex="1">
-                    <mxGeometry height="30" width="580" y="180" as="geometry"/>
-                </mxCell>
-                <mxCell id="TVIsHUXLkixqiQ88FRVk-39" parent="TVIsHUXLkixqiQ88FRVk-38" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" value="" vertex="1">
-                    <mxGeometry height="30" width="30" as="geometry">
-                        <mxRectangle height="30" width="30" as="alternateBounds"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="TVIsHUXLkixqiQ88FRVk-40" parent="TVIsHUXLkixqiQ88FRVk-38" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" value="completed&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;BOOLEAN&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;NOT NULL&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;DEFAULT 0" vertex="1">
-                    <mxGeometry height="30" width="550" x="30" as="geometry">
-                        <mxRectangle height="30" width="550" as="alternateBounds"/>
-                    </mxGeometry>
-                </mxCell>
                 <mxCell id="TVIsHUXLkixqiQ88FRVk-32" parent="TVIsHUXLkixqiQ88FRVk-16" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" value="" vertex="1">
-                    <mxGeometry height="30" width="580" y="210" as="geometry"/>
+                    <mxGeometry height="30" width="580" y="180" as="geometry"/>
                 </mxCell>
                 <mxCell id="TVIsHUXLkixqiQ88FRVk-33" parent="TVIsHUXLkixqiQ88FRVk-32" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" value="" vertex="1">
                     <mxGeometry height="30" width="30" as="geometry">
