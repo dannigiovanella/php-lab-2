@@ -7,6 +7,7 @@
 $pageTitle = $pageTitle ?? "Bucketlist";
 ?>
 
+<!--Webbplatsens head med nödvändig info för varje sida-->
 <!DOCTYPE html>
 <html lang="sv">
 
