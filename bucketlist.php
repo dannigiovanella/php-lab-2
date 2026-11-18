@@ -7,6 +7,11 @@
 
 <!--head och header-->
 <?php
+
+//Hämtar klasserna för att hantera databas och innehåll
+require_once "classes/Database.php";
+require_once "classes/Bucketlist.php";
+
 //Sidans titel som skickas till header.php
 //Titel sparas i variabeln pageTitle
 $pageTitle = "Min Bucketlist";

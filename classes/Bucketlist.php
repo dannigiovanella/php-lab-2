@@ -48,14 +48,14 @@ class Bucketlist
         //SQL fråga som lägger till en ny post i tabellen
         //Values används för att ange vilka värden som ska sparas
         //variabeln sql tilldelas SQL koden
-        //:name, :description, :priority fungerar som placeholders
+        //:name, :description, :priority fungerar som placeholders för värderna
         $sql = "INSERT INTO bucketlist (name, description, priority)
         VALUES (:name, :description, :priority)"; 
 
         //Hantering mot SQL injections
         //Förbereder SQL frågan med prepare innan den skickas till databasen
         //varibeln statement sparar den förberedda frågan
-        $satement = $this->db->prepare($sql);
+        $statement = $this->db->prepare($sql);
 
 
         //Kopplar ihop placeholders från VALUES med metodens parametrar
@@ -75,6 +75,31 @@ class Bucketlist
 
 
     //DELETE
+    //Funktion som tar bort en post från bucketlist
+    //Metoden delete kan användas utanför klassen
+    //Tar emot heltal för att identifiera en post
+    //Returnerar true eller false
+    public function delete(int $id): bool
+    {
+        //SQL fråga som tar bort en post med ett visst ID
+        //variabeln sql tilldelas SQL koden
+        $sql = "DELETE FROM bucketlist WHERE id = :id";
+
+        //Förbereder SQL frågan med prepare innan den skickas till databasen
+        //varibeln statement sparar den förberedda frågan
+        $statement = $this->db->prepare($sql);
+
+        //Skickar id-värdet och kopplar det till placeholdern i SQL frågan
+        //:id fungerar som placeholders för värdet
+        $statement->execute([
+        ':id' => $id
+        ]);
+
+        //Returnerar om SQL frågan genomfördes
+        //Kontrollerar om frågan påverkade minst en rad
+        // Returnerar true om en post togs bort, annars false
+        return $statement->rowCount() > 0;
+    }
 
 
     //UPDATE (klura på den här längre fram)
