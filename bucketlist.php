@@ -31,7 +31,7 @@ $bucketlist = new Bucketlist($connection);
 //REQUEST_METHOD talar om vilken metod som användes. Metod POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-//Kontrollerar om användaren vill ta bort en post
+    //Kontrollerar om användaren vill ta bort en post
 //isset kontrollerar om värde skickats och om det är null
 //POST används för att hämta värden som skickats från formuläret
     if (isset($_POST["delete"])) {
@@ -96,6 +96,27 @@ include "includes/header.php";
         <article>
             <h3><?php echo htmlspecialchars($post["name"]); ?></h3>
             <p><?php echo htmlspecialchars($post["description"]); ?></p>
+
+            <!--Visar postens prioritet
+            Skriver ut beroende på vad som valts. Från 1 som högst till 3 som lägst-->
+            <p>Prioritet:
+                <?php
+                if ($post['priority'] == 1) {
+                    echo "Hög";
+                } elseif ($post['priority'] == 2) {
+                    echo "Medel";
+                } elseif ($post['priority'] == 3) {
+                    echo "Låg";
+                }
+                ?>
+            </p>
+            <!--visar när posten skapades
+            created at hämtar datum och tid från db
+            strtotime omvandlar datumet format som date kan arbeta med
+            date "Y-m-d" formaterar datumet så att det visas som tex 2026-11-20-->
+            <p>Skapad:
+                <?php echo date("Y-m-d", strtotime($post['created_at'])); ?>
+            </p>
 
 
             <!--Ta bort en post-->
