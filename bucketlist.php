@@ -4,18 +4,19 @@
 SNYGGA TILL FILEN! VALIDERING SEPARAT?-->
 
 <?php
+//STARTAR SESSION
 //Startar en session för att kunna spara information mellan sidladdningar
 session_start();
 
-//Koppling till databas
+//HÄMTAR KLASSER
+//Hämtar klasserna som behövs för databaskoppling och bucketlist
 
 //Hämtar klasserna för att hantera databas och innehåll
 require_once "classes/Database.php";
 require_once "classes/Bucketlist.php";
 
-//Databasanslutning
-
-//Skapar ett objekt för databaskopplingen
+//DATABASANSLUTNING
+//Skapar ett Database-objekt och hämtar databaskopplingen
 //Sparas i varibeln database
 $database = new Database();
 
@@ -27,22 +28,24 @@ $connection = $database->getConnection();
 //Sparas i bucketlist
 $bucketlist = new Bucketlist($connection);
 
-//VALIDERING
-//Variabel som sparar eventuella felmeddelanden
+//FELMEDDELANDEN
+//Variabler som sparar eventuella felmeddelanden
 $nameError = "";
 $descriptionError = "";
 $priorityError = "";
 
-//SKICKA OCH TA BORT
+
+// HANTERAR POST
+// Kontrollerar om ett formulär har skickats till sidan
 
 //Kontrollerar om formuläret har skickats med POST metoden
 //Använder SERVER för att information om förfrågan
 //REQUEST_METHOD talar om vilken metod som användes. Metod POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    //Kontrollerar om användaren vill ta bort en post
-//isset kontrollerar om värde skickats och om det är null
-//POST används för att hämta värden som skickats från formuläret
+    //KONTROLLERAR OM EN POST SKA TAS BORT
+    //isset kontrollerar om ett värde finns och inte är null
+    //POST används för att hämta värden som skickats från formuläret
     if (isset($_POST["delete"])) {
         //Hämtar id för posten som ska tas bort
         $id = $_POST["id"];
@@ -51,16 +54,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         //Omvabdlar värdet till int
         $bucketlist->delete((int) $id);
 
+        //HANTERAR TILLÄGG AV NY POST
+        //Hämtar formulärvärden och kontrollerar att de är giltiga
     } else {
-        //Hämtar värdena från formuläret med POST
+        //HÄMTAR FORMULÄRVÄRDEN
+        //Hämtar värdena som skickats från formuläret med POST
         $name = $_POST["name"];
         $description = $_POST["description"];
         $priority = $_POST["priority"];
 
-        //Sparar formulärets värden i sessionen
+        //SPARAR FORMULÄRVÄRDEN I SESSIONEN
+        //Gör det möjligt att behålla värdena om valideringen misslyckas
         $_SESSION["name"] = $name;
         $_SESSION["description"] = $description;
         $_SESSION["priority"] = $priority;
+
+        //VALIDERAR FORMULÄRFÄLTEN
 
         //Kontrollerar att namnet inte är tomt
         if (empty(trim($name))) {
@@ -84,14 +93,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $priorityError = "Du måste välja prioritet.";
         }
 
-        //Sparar felmeddelandena i sessionen
+        //SPARAR FELMEDDELANDEN I SESSIONEN
         $_SESSION["nameError"] = $nameError;
         $_SESSION["descriptionError"] = $descriptionError;
         $_SESSION["priorityError"] = $priorityError;
 
-        //Kontrollerar om det inte finns några felmeddelanden
-        //empty kontrollerar om error-variablerna är tomma
-        //om tom har inga fel hittats och post läggs till
+        //KONTROLLERAR OM VALIDERINGEN HAR LYCKATS
+        //om inga fel hittats läggs post till i databasen
         if (empty($nameError) && empty($descriptionError) && empty($priorityError)) {
 
             //Lägger till en ny post i 
@@ -106,32 +114,32 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             unset($_SESSION["descriptionError"]);
             unset($_SESSION["priorityError"]);
         }
-
-        //Skickar tillbaka besökaren till bucketlist sidan med Location
-        //exit avslutar php körning
-        header("Location: bucketlist.php");
-        exit;
-
     }
+
+    //Skickar tillbaka besökaren till bucketlist sidan med Location
+    //exit avslutar php körning
+    header("Location: bucketlist.php");
+    exit;
 }
 
-
-//HÄMTAR
-//Hämtar alla poster från databasen
-//Sparas o posts
+//HÄMTAR DATA FRÅN DATABASEN
+//Hämtar bucketlistens poster från databasen
 $posts = $bucketlist->getAll();
 
-//Hämtar formulärets värden från sessionen
+//HÄMTAR FORMULÄRVÄRDEN FRÅN SESSIONEN
+//Hämtar sparade värden eller använder tomma strängar om inga finns
 $name = $_SESSION["name"] ?? "";
 $description = $_SESSION["description"] ?? "";
 $priority = $_SESSION["priority"] ?? "";
 
-//Hämtar eventuella felmeddelanden från sessionen
+//HÄMTAR FELMEDDELANDEN FRÅN SESSIONEN
+//Hämtar sparade felmeddelanden eller använder tomma strängar
 $nameError = $_SESSION["nameError"] ?? "";
 $descriptionError = $_SESSION["descriptionError"] ?? "";
 $priorityError = $_SESSION["priorityError"] ?? "";
 
-//Tömmer sessionens sparade formulärvärden och felmeddelanden med unset
+//TÖMMER SESSIONEN
+//Tar bort de sparade värdena efter att de har hämtats
 unset($_SESSION["name"]);
 unset($_SESSION["description"]);
 unset($_SESSION["priority"]);
@@ -150,7 +158,6 @@ include "includes/header.php";
 ?>
 
 <!--Bucketlistens innehåll-->
-
 <section>
 
     <!--Huvudrubrik -->
@@ -165,14 +172,13 @@ include "includes/header.php";
     post representerar varje enskild post i listan-->
     <?php foreach ($posts as $post): ?>
 
-        <!--Skriver ut post i bucketlisten med namn och beskrivning
-        Tillåter specialtecken-->
+        <!--Visar en enskild post-->
         <article>
+            <!--Postens namn och beskrivning-->
             <h3><?php echo htmlspecialchars($post["name"]); ?></h3>
             <p><?php echo htmlspecialchars($post["description"]); ?></p>
 
-            <!--Visar postens prioritet
-            Skriver ut beroende på vad som valts. Från 1 som högst till 3 som lägst-->
+            <!--Visar postens prioritet-->
             <p>Prioritet:
                 <?php
                 if ($post['priority'] == 1) {
@@ -184,10 +190,7 @@ include "includes/header.php";
                 }
                 ?>
             </p>
-            <!--visar när posten skapades
-            created at hämtar datum och tid från db
-            strtotime omvandlar datumet format som date kan arbeta med
-            date "Y-m-d" formaterar datumet så att det visas som tex 2026-11-20-->
+            <!--visar datum när posten skapades-->
             <p>Skapad:
                 <?php echo date("Y-m-d", strtotime($post['created_at'])); ?>
             </p>
@@ -227,7 +230,6 @@ include "includes/header.php";
         <label for="name">Namn:</label>
         <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($name); ?>">
 
-        <!--Felmeddelande-->
         <!--Kontrollerar att variabeln $nameError inte är tom-->
         <?php if (!empty($nameError)): ?>
             <!--Visar felmeddelande om namnet är tomt -->
@@ -240,7 +242,6 @@ include "includes/header.php";
         <label for="description">Beskrivning:</label>
         <textarea id="description" name="description"><?php echo htmlspecialchars($description); ?></textarea>
 
-        <!--Felmeddelande-->
         <!--Kontrollerar att variabeln $descriptionError inte är tom-->
         <?php if (!empty($descriptionError)): ?>
             <!-- Visar felmeddelande om beskrivningen är tom -->
@@ -262,7 +263,6 @@ include "includes/header.php";
                 echo "selected"; ?>>Låg</option>
         </select>
 
-        <!--Felmeddelande-->
         <!--Kontrollerar att variabeln $priorityError inte är tom-->
         <?php if (!empty($priorityError)): ?>
             <!-- Visar felmeddelande om prioriteten är ogiltig -->
