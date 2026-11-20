@@ -1,4 +1,3 @@
-
 <!--KLASS FÖR DATABASANSLUTNING-->
 
 <?php
@@ -21,7 +20,9 @@ class Database
         //Skapar en anslutning till databasen med PDO
         //Skickar med: vilken typ av databas, serveradress, port,  databasens namn, teckenkodning, användarnamn och lösen
         $this->connection = new PDO(
-            "mysql:host=" . DB_HOST . ";port=3306;dbname=" . DB_NAME . ";charset=utf8mb4", DB_USER, DB_PASS
+            "mysql:host=" . DB_HOST . ";port=3306;dbname=" . DB_NAME . ";charset=utf8mb4",
+            DB_USER,
+            DB_PASS
         );
 
         //Felhantering
