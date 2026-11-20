@@ -27,6 +27,11 @@ $connection = $database->getConnection();
 //Sparas i bucketlist
 $bucketlist = new Bucketlist($connection);
 
+//HÄMTAR
+//Hämtar alla poster från databasen
+//Sparas o posts
+$posts = $bucketlist->getAll();
+
 //head och header
 
 //Sidans titel som skickas till header.php
@@ -46,6 +51,22 @@ include "includes/header.php";
 
     <!--Kort text om sidan-->
     <p>Skriv lite om bucketlisten</p>
+
+    <!--Skriver ut Bucketlistan-->
+
+    <!--Loopar igenom alla poster i posts
+    post representerar varje enskild post i listan-->
+     <?php foreach ($posts as $post): ?>
+
+        <!--Skriver ut post i bucketlisten med namn och beskrivning
+        Tillåter specialtecken-->
+        <article>
+            <h3><?php echo htmlspecialchars($post["name"]); ?></h3>
+            <p><?php echo htmlspecialchars($post["description"]); ?></p>
+        </article>
+
+    <?php endforeach; ?>
+
 
 </section>
 
