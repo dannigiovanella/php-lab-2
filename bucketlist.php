@@ -27,6 +27,26 @@ $connection = $database->getConnection();
 //Sparas i bucketlist
 $bucketlist = new Bucketlist($connection);
 
+//Kontrollerar om formuläret har skickats med POST metoden
+//Använder SERVER för att information om förfrågan
+//REQUEST_METHOD talar om vilken metod som användes
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    //Hämtar värdena från formuläret
+    $name = $_POST["name"];
+    $description = $_POST["description"];
+    $priority = $_POST["priority"];
+
+    //Lägger till en ny post i 
+    //Omvandlar priority till int
+    $bucketlist->add($name, $description, (int)$priority);
+    
+    //Skickar tillbaka besökaren till bucketlist sidan med Location
+    //exit avslutar php körning
+    header("Location: bucketlist.php");
+    exit;
+
+    }
+
 //HÄMTAR
 //Hämtar alla poster från databasen
 //Sparas o posts
@@ -67,6 +87,42 @@ include "includes/header.php";
 
     <?php endforeach; ?>
 
+</section>
+
+
+     <!--Formulär-->
+
+     <!--formulär för att lägga till en ny bucketlist post-->
+    <section>
+
+    <!--Rubrik-->
+    <h2>Lägg till en ny post</h2>
+
+     <!--Metod POST används för att skicka värden
+     action visar på vilken sida som ska ta emot formulätet-->
+    <form method="POST" action="bucketlist.php">
+
+        <!--fält för postens namn-->
+        <label for="name">Namn:</label>
+        <input type="text" id="name" name="name">
+
+        <!--Fält för postens beskrivning-->
+        <label for="description">Beskrivning:</label>
+        <textarea id="description" name="description"></textarea>
+
+        <!--Val av prioritet-->
+        <label for="priority">Prioritet:</label>
+        <select id="priority" name="priority">
+            <option value="">Välj prioritet</option>
+            <option value="1">Hög</option>
+            <option value="2">Medel</option>
+            <option value="3">Låg</option>
+        </select>
+
+        <!--Knapp för att skicka formuläret-->
+        <button type="submit">Lägg till</button>
+
+    </form>
 
 </section>
 
