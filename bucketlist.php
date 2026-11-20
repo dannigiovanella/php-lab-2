@@ -1,9 +1,6 @@
-
-
 <!--Innehåll för sida för Bucketlist-->
 
-<!--Att lägga till: Formulär för att lägga till saker.
-    Visa sparade saker från databasen.-->
+<!--KVAR ATT GÖRA: Fixa så man kan ändra/uppdatera om man är klar med en post-->
 
 <?php
 
@@ -27,25 +24,41 @@ $connection = $database->getConnection();
 //Sparas i bucketlist
 $bucketlist = new Bucketlist($connection);
 
+//SKICKA OCH TA BORT
+
 //Kontrollerar om formuläret har skickats med POST metoden
 //Använder SERVER för att information om förfrågan
-//REQUEST_METHOD talar om vilken metod som användes
+//REQUEST_METHOD talar om vilken metod som användes. Metod POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    //Hämtar värdena från formuläret
-    $name = $_POST["name"];
-    $description = $_POST["description"];
-    $priority = $_POST["priority"];
 
-    //Lägger till en ny post i 
-    //Omvandlar priority till int
-    $bucketlist->add($name, $description, (int)$priority);
-    
-    //Skickar tillbaka besökaren till bucketlist sidan med Location
-    //exit avslutar php körning
-    header("Location: bucketlist.php");
-    exit;
+//Kontrollerar om användaren vill ta bort en post
+//isset kontrollerar om värde skickats och om det är null
+//POST används för att hämta värden som skickats från formuläret
+    if (isset($_POST["delete"])) {
+        //Hämtar id för posten som ska tas bort
+        $id = $_POST["id"];
 
+        //Tar bort posten från databasen med dess ID
+        //Omvabdlar värdet till int
+        $bucketlist->delete((int) $id);
+
+    } else {
+        //Hämtar värdena från formuläret med POST
+        $name = $_POST["name"];
+        $description = $_POST["description"];
+        $priority = $_POST["priority"];
+
+        //Lägger till en ny post i 
+        //Omvandlar priority till int
+        $bucketlist->add($name, $description, (int) $priority);
+
+        //Skickar tillbaka besökaren till bucketlist sidan med Location
+        //exit avslutar php körning
+        header("Location: bucketlist.php");
+        exit;
     }
+}
+
 
 //HÄMTAR
 //Hämtar alla poster från databasen
@@ -76,29 +89,42 @@ include "includes/header.php";
 
     <!--Loopar igenom alla poster i posts
     post representerar varje enskild post i listan-->
-     <?php foreach ($posts as $post): ?>
+    <?php foreach ($posts as $post): ?>
 
         <!--Skriver ut post i bucketlisten med namn och beskrivning
         Tillåter specialtecken-->
         <article>
             <h3><?php echo htmlspecialchars($post["name"]); ?></h3>
             <p><?php echo htmlspecialchars($post["description"]); ?></p>
+
+
+            <!--Ta bort en post-->
+            <!--Formulär för att ta bort post. Formulär skickas med metod POST-->
+            <form method="POST" action="bucketlist.php">
+
+                <!--Skickar med postens id till php-->
+                <!--hidden döljer fält på sidan-->
+                <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
+
+                <!--Knapp för att ta bort posten-->
+                <button type="submit" name="delete" value="1">Ta bort</button>
+
+            </form>
         </article>
 
     <?php endforeach; ?>
 
 </section>
 
+<!--Formulär-->
 
-     <!--Formulär-->
-
-     <!--formulär för att lägga till en ny bucketlist post-->
-    <section>
+<!--formulär för att lägga till en ny bucketlist post-->
+<section>
 
     <!--Rubrik-->
     <h2>Lägg till en ny post</h2>
 
-     <!--Metod POST används för att skicka värden
+    <!--Metod POST används för att skicka värden
      action visar på vilken sida som ska ta emot formulätet-->
     <form method="POST" action="bucketlist.php">
 

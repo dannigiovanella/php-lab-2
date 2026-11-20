@@ -1,4 +1,3 @@
-
 <!--WEBBPLATSENS HEADER-->
 
 <?php
@@ -23,6 +22,7 @@ $pageTitle = $pageTitle ?? "Bucketlist";
 </head>
 
 <!--Body stängs i footer-->
+
 <body>
 
     <!--Webbplatsens gemensamma header med navigering-->

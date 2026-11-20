@@ -26,15 +26,15 @@ class Bucketlist
     //metoden returnerar en array
     public function getAll(): array
     {
-    //SQL-fråga som hämtar alla poster
-    $sql = "SELECT * FROM bucketlist";
+        //SQL-fråga som hämtar alla poster
+        $sql = "SELECT * FROM bucketlist";
 
-    //Skickar SQL-frågan till databasen och hämtar resultat
-    //Resultatet sparas i vaiabeln result
-    $result = $this->db->query($sql);
+        //Skickar SQL-frågan till databasen och hämtar resultat
+        //Resultatet sparas i vaiabeln result
+        $result = $this->db->query($sql);
 
-    //Hämtar alla rader och returnerar resultatet som en array
-    return $result->fetchAll(PDO::FETCH_ASSOC);
+        //Hämtar alla rader och returnerar resultatet som en array
+        return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
     //ADD
@@ -50,7 +50,7 @@ class Bucketlist
         //variabeln sql tilldelas SQL koden
         //:name, :description, :priority fungerar som placeholders för värderna
         $sql = "INSERT INTO bucketlist (name, description, priority)
-        VALUES (:name, :description, :priority)"; 
+        VALUES (:name, :description, :priority)";
 
         //Hantering mot SQL injections
         //Förbereder SQL frågan med prepare innan den skickas till databasen
@@ -92,7 +92,7 @@ class Bucketlist
         //Skickar id-värdet och kopplar det till placeholdern i SQL frågan
         //:id fungerar som placeholders för värdet
         $statement->execute([
-        ':id' => $id
+            ':id' => $id
         ]);
 
         //Returnerar om SQL frågan genomfördes
