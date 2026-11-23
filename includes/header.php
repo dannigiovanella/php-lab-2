@@ -18,7 +18,7 @@ $pageTitle = $pageTitle ?? "Bucketlist";
     <title><?php echo htmlspecialchars($pageTitle); ?></title>
 
     <!--Koppling till CSS-->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <!--Body stängs i footer-->

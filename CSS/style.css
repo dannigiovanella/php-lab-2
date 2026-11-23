@@ -1,0 +1,113 @@
+/*Inställningar för hela webbplatsen */
+* {
+    box-sizing: border-box;
+}
+
+/*Färger och grundinställningar */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #171521;
+    color: #F4EFF8;
+    font-family: Arial, sans-serif;
+}
+
+/*Gemensam stil för huvudinnehållet */
+main {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+/*Rubriker */
+h1,
+h2,
+h3 {
+    color: #F4EFF8;
+}
+
+/*Vanlig text */
+p {
+    color: #B8B0C7;
+    line-height: 1.6;
+}
+
+
+
+
+
+/*//////////// HEADER ////////////////*/
+
+/*Header*/
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 24px 5%;
+    background-color: #201B2C;
+    border-bottom: 1px solid #393044;
+}
+
+/*Webbplatsens namn*/
+header h1 {
+    margin: 0;
+    font-size: 1.7rem;
+    color: #D98BC5;
+}
+
+/*Navigation*/
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/*Navigationslänkar*/
+nav a {
+    color: #B8B0C7;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.2s ease;
+}
+
+/* Färg vid hover*/
+nav a:hover {
+    color: #D98BC5;
+}
+
+/*Anpassning för mindre skärmar*/
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        gap: 15px;
+    }
+}
+
+/*/////////  FOOTER  /////////////*/
+
+/*Footer*/
+footer {
+    /*Avstånd. flexibla för sidorna och fasta för höjd*/
+    padding: 25px 5%;
+    background-color: #201B2C;
+    border-top: 1px solid #393044;
+    text-align: left;
+}
+
+/* Texten i footer*/
+footer p {
+    margin: 5px 0;
+    color: #B8B0C7;
+    font-size: 0.9rem;
+}

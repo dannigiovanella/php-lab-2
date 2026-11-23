@@ -1,4 +1,3 @@
-//Klass som hanterar innehåll i Bucketlist
 
 <?php
 
