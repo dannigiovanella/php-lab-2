@@ -233,7 +233,7 @@ include "includes/header.php";
         <!--Kontrollerar att variabeln $nameError inte är tom-->
         <?php if (!empty($nameError)): ?>
             <!--Visar felmeddelande om namnet är tomt -->
-            <p>
+            <p class="error-message">
                 <?php echo htmlspecialchars($nameError); ?>
             </p>
         <?php endif; ?>
@@ -245,7 +245,7 @@ include "includes/header.php";
         <!--Kontrollerar att variabeln $descriptionError inte är tom-->
         <?php if (!empty($descriptionError)): ?>
             <!-- Visar felmeddelande om beskrivningen är tom -->
-            <p>
+            <p class="error-message">
                 <?php echo htmlspecialchars($descriptionError); ?>
             </p>
         <?php endif; ?>
@@ -266,7 +266,7 @@ include "includes/header.php";
         <!--Kontrollerar att variabeln $priorityError inte är tom-->
         <?php if (!empty($priorityError)): ?>
             <!-- Visar felmeddelande om prioriteten är ogiltig -->
-            <p>
+            <p class="error-message">
                 <?php echo htmlspecialchars($priorityError); ?>
             </p>
         <?php endif; ?>

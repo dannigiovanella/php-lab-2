@@ -10,6 +10,9 @@ body {
     background-color: #171521;
     color: #F4EFF8;
     font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /*Gemensam stil för huvudinnehållet */
@@ -17,7 +20,8 @@ main {
     width: 90%;
     max-width: 1100px;
     margin: 0 auto;
-    padding: 40px 0;
+    padding: 2.5rem;
+    flex: 1;
 }
 
 /*Rubriker */
@@ -27,7 +31,7 @@ h3 {
     color: #F4EFF8;
 }
 
-/*Vanlig text */
+/*Vanlig text*/
 p {
     color: #B8B0C7;
     line-height: 1.6;
@@ -105,9 +109,114 @@ footer {
     text-align: left;
 }
 
-/* Texten i footer*/
+/*Texten i footer*/
 footer p {
     margin: 5px 0;
     color: #B8B0C7;
     font-size: 0.9rem;
+}
+
+/*/////// KNAPPAR /////////*/
+button {
+    background-color: #A78BCE;
+    color: #171521;
+    width: 20rem;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.8rem 1.6rem;
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+/*Hover-effekt*/
+button:hover {
+    background-color: #D98BC5;
+    transform: translateY(-2px);
+}
+
+
+/*///// BUCKETLIST - SIDA ///////*/
+
+/*Bucket-listan*/
+
+/*Sektioner på bucketlist-sidan*/
+section {
+    margin-bottom: 3rem;
+}
+
+/*Rubriker i sektionerna*/
+section h2 {
+    color: #D98BC5;
+    margin-bottom: 1rem;
+}
+
+/*Enskilda poster*/
+article {
+    background-color: #242031;
+    border: 1px solid #393044;
+    border-radius: 0.7rem;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/*Rubrik för varje post*/
+article h3 {
+    color: #A78BCE;
+    margin-top: 0;
+}
+
+/*Formulär (träffar bra formulärdelar tillhörande add post)*/
+section > form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #242031;
+    border: 1px solid #393044;
+    border-radius: 0.7rem;
+    padding: 1.5rem;
+}
+
+/*Fälten i formuläret*/
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #171521;
+    color: #F4EFF8;
+    border: 1px solid #393044;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+}
+
+textarea {
+    min-height: 8rem;
+}
+
+/*Etiketterna för varje fält*/
+label {
+    color: #F4EFF8;
+    font-weight: bold;
+}
+
+/*Styling för felmeddelanden*/
+.error-message {
+    color: #F08AAE;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0.25rem 0 0.5rem;
+}
+
+/*MOBILT LÄGE*/
+
+@media (max-width: 700px) {
+
+    /*Knappar*/
+    button {
+        width: 100%;
+    }
 }
