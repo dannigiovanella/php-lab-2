@@ -54,6 +54,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         //Omvabdlar värdet till int
         $bucketlist->delete((int) $id);
 
+        //HANTERAR ÄNDRING AV STATUS PÅ EN POST
+    } elseif (isset($_POST["completed"])) {
+
+        //Hämtar ID för posten som ska ändras
+        $id = $_POST["id"];
+
+        //Ändrar postens status mellan slutförd och inte slutförd
+        $bucketlist->toggleCompleted((int) $id);
+
         //HANTERAR TILLÄGG AV NY POST
         //Hämtar formulärvärden och kontrollerar att de är giltiga
     } else {
@@ -117,8 +126,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     //Skickar tillbaka besökaren till bucketlist sidan med Location
-    //exit avslutar php körning
-    header("Location: bucketlist.php");
+    //Om det finns valideringsfel skickas besökaren till formuläret
+    if (!empty($nameError) || !empty($descriptionError) || !empty($priorityError)) {
+
+        header("Location: bucketlist.php#add-form");
+
+    } else {
+        header("Location: bucketlist.php");
+    }
+
     exit;
 }
 
@@ -173,7 +189,9 @@ include "includes/header.php";
     <?php foreach ($posts as $post): ?>
 
         <!--Visar en enskild post-->
-        <article>
+
+        <!--Visar en enskild post och lägger till en klass om posten är markerad slutförd-->
+        <article class="<?php echo $post["completed"] == 1 ? 'completed' : ''; ?>">
             <!--Postens namn och beskrivning-->
             <h3><?php echo htmlspecialchars($post["name"]); ?></h3>
             <p><?php echo htmlspecialchars($post["description"]); ?></p>
@@ -195,6 +213,28 @@ include "includes/header.php";
                 <?php echo date("Y-m-d", strtotime($post['created_at'])); ?>
             </p>
 
+            <!--UPDATE COMPLETED-->
+            <!--Formulär för att ändra status på en post. Formulär skickas med metod POST-->
+            <form method="POST" action="bucketlist.php">
+
+                <!--Skickar med postens id till php-->
+                <!--hidden döljer fält på sidan-->
+                <input type="hidden" name="id" value="<?php echo $post["id"]; ?>">
+
+                <?php
+                //Kontrollerar om posten är slutförd eller inte
+                if ($post["completed"] == 0): ?>
+
+                    <!--Knapp för att markera posten som slutförd-->
+                    <button type="submit" name="completed" value="1">Markera som slutförd</button>
+
+                <?php else: ?>
+
+                    <!--Knapp för att ångra markeringen-->
+                    <button type="submit" name="completed" value="1">Ångra slutförd</button>
+
+                <?php endif; ?>
+            </form>
 
             <!--Ta bort en post-->
             <!--Formulär för att ta bort post. Formulär skickas med metod POST-->
@@ -216,8 +256,8 @@ include "includes/header.php";
 
 <!--Formulär-->
 
-<!--formulär för att lägga till en ny bucketlist post-->
-<section>
+<!--formulär för att lägga till en ny bucketlist post (id används dör omdirigering)-->
+<section id="add-form">
 
     <!--Rubrik-->
     <h2>Lägg till en ny post</h2>

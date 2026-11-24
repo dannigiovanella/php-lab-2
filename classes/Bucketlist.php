@@ -1,4 +1,3 @@
-
 <?php
 
 //Skapar klassen Bucketlist
@@ -69,6 +68,36 @@ class Bucketlist
         //Returnerar om SQL frågan genomfördes
         //Kontrollerar om frågan påverkade minst en rad
         //returnerar true om post las till, annars false
+        return $statement->rowCount() > 0;
+    }
+
+    //UPDATE COMPLETED
+    //Funktion som ändrar status på en bucketlist-post
+    //Metoden toggleCompleted kan användas utanför klassen
+    //Tar emot postens ID som heltal
+    //Ändrar completed från 0 till 1 eller från 1 till 0
+    //Returnerar true eller false
+    public function toggleCompleted(int $id): bool
+    {
+        //SQL fråga som ändrar status på posten
+        //CASE kontrollerar det nuvarande värdet
+        //Om completed är 0 ändras det till 1, annars till 0
+        $sql = "UPDATE bucketlist
+                SET completed = CASE
+                    WHEN completed = 0 THEN 1
+                    ELSE 0
+                END
+                WHERE id = :id";
+
+        //Förbereder SQL frågan
+        $statement = $this->db->prepare($sql);
+
+        //Skickar ID-värdet till SQLfrågan
+        $statement->execute([
+            ':id' => $id
+        ]);
+
+        //Kontrollerar om någon rad har ändrats
         return $statement->rowCount() > 0;
     }
 

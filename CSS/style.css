@@ -168,8 +168,19 @@ article h3 {
     margin-top: 0;
 }
 
+/*Slutförda bucketlist-poster*/
+article.completed {
+    background-color: #1D1928;
+    opacity: 0.6;
+}
+
+/*Rubrik för slutförda poster*/
+article.completed h3 {
+    text-decoration: line-through;
+}
+
 /*Formulär (träffar bra formulärdelar tillhörande add post)*/
-section > form {
+section>form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
