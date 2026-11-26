@@ -179,9 +179,6 @@ include "includes/header.php";
     <!--Huvudrubrik -->
     <h2>Min Bucketlist</h2>
 
-    <!--Kort text om sidan-->
-    <p>Skriv lite om bucketlisten</p>
-
     <!--Skriver ut Bucketlistan-->
 
     <!--Loopar igenom alla poster i posts
