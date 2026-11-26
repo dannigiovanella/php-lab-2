@@ -1,3 +1,6 @@
+<!--KLASSFIL FÖR BUCKETLIST
+Innehåller metoder för att hämta, lägga till, uppdatera och ta bort poster-->
+
 <?php
 
 //Skapar klassen Bucketlist

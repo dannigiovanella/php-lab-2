@@ -1,7 +1,7 @@
 <!--Innehåll för sida för Bucketlist-->
 
-<!--KVAR ATT GÖRA: Fixa så man kan ändra/uppdatera om man är klar med en post
-SNYGGA TILL FILEN! VALIDERING SEPARAT?-->
+<!--Innehåller en bucketlist med poster som kan uppdateras och tas bort.
+.Formulär för att kunna lägga till ny post-->
 
 <?php
 //STARTAR SESSION

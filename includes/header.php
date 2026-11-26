@@ -1,4 +1,5 @@
-<!--WEBBPLATSENS HEADER-->
+<!--WEBBPLATSENS HEADER
+Innehåller information om sidan och en navigationsmeny-->
 
 <?php
 //Hämtar sidans titel om den har angetts
