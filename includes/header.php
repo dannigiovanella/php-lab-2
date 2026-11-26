@@ -37,7 +37,7 @@ $pageTitle = $pageTitle ?? "Bucketlist";
             <ul>
                 <li><a href="index.php">Startsida</a></li>
                 <li><a href="bucketlist.php">Bucketlist</a></li>
-                <li><a href="ai.php">AI och arbetsprocess</a></li>
+                <li><a href="ai.php">AI i arbetsprocess</a></li>
             </ul>
         </nav>
 
